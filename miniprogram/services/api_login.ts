@@ -6,6 +6,9 @@ export default {
   },
   login3(params: IRegister) {
     return api_post<loginBackData>(`channelRegisterloginMobile`, params)
+  },
+  isBinding() {
+    return api_post<loginBackData>(`user/isBinding`)
   }
 }
 export interface IRegister {

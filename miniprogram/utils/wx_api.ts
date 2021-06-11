@@ -22,11 +22,12 @@ const wx_load_hide = (): void => {
  * @param icon 提示icon
  * @param handle 提示结束后的回调函数
  */
+type Thandle = string | Function | void
 let cur_tip_loading = false
 const wx_tip = (
   title: string,
   icon: T_icon | void,
-  handle: Function | void
+  handle: Thandle
 ): void => {
   if (cur_tip_loading) {
     wx.hideToast()
@@ -41,21 +42,25 @@ const wx_tip = (
   // 这里有bug,在1.5秒内再次发出一个tip
   const time_id = setTimeout(() => {
     if (handle) {
-      handle()
+      if (typeof handle === 'string') {
+        wx_nav(handle)
+      } else {
+        handle()
+      }
     }
     clearTimeout(time_id)
     cur_tip_loading = false
   }, 1400)
 }
 const wx_err = (
-  title = '出错了',
-  handle: Function | void
+  title: string = '出错了',
+  handle: Thandle
 ): void => {
   wx_tip(title, 'none', handle)
 }
-const wx_succes = (
-  title = '成功了',
-  handle: Function | void
+const wx_success = (
+  title: string = '成功了',
+  handle: Thandle
 ): void => {
   wx_tip(title, 'success', handle)
 }
@@ -131,7 +136,7 @@ export default {
   wx_load_hide,
   wx_tip,
   wx_err,
-  wx_succes,
+  wx_success,
   wx_tip_mask,
   wx_code,
   wx_nav

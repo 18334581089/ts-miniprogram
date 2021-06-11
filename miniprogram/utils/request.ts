@@ -1,37 +1,41 @@
 import config from './env'
 import util from '../utils/util'
+import { DefinitionInfoAndBoundSpanReponse } from '../../$node_modules/typescript/lib/protocol'
 
 const { BASE_URL, STORE_ID } = config
 const APP = getApp<IAppOption>()
-type Method = 'GET' | 'POST'
 
-const success_handle = (res: any) => {
+function success_handle<T>(
+  res: I_reponse<T>
+): T | null {
   console.log(res)
-  const code = res.data.code
+  const { code, data, message } = res.data
   if (code === 200) {
-    return res.data.data || res.data
+    return data
+  } else if (code === 403) {
+    APP.globalData.can_reg = true
+    util.wx_err(message, 'login')
+    return null
   } else {
-    util.wx_err(res.data.message)
-    if (code === 403) {
-      util.wx_nav('login')
-      getApp<IAppOption>().globalData.can_reg = true
-    }
+    util.wx_err(message)
     return null
   }
 }
 
-const fail_handle = (err: any) => {
-  console.log(err)
+function fail_handle(
+  err: I_reponse_err
+): null {
+  console.log(err.errMsg)
   util.wx_err('网络出错了!')
   return null
 }
 
-export const request = <T>(
+export const request = <res_t>(
   url: string,
   datas?: any,
-  method: Method = 'GET',
+  method: T_method = 'GET',
   headers = {}
-): Promise<T | null> => {
+): Promise<res_t | null> => {
   const header = {
     Authorization: 'Bearer ' + APP.globalData.token,
     ...headers
@@ -40,20 +44,25 @@ export const request = <T>(
     storeId: STORE_ID,
     ...datas
   }
-  const request = new Promise<T | null>((resolve, reject) => {
+  const wx_request = new Promise<res_t | null>((resolve, reject) => {
     wx.request({
       url,
       data,
       method,
       header,
-      success: (res: any) => resolve(res),
+      // success: (res: T_wx_res<res_t>) => {
+      // success (res: PromiseLike<res_t>) {
+      success (res: any) {
+        resolve(res)
+      },
+
       fail: (err) => reject(err),
       // complete: wx.hideLoading // 如何把loading写在公共方法里
     })
   })
-    .then(success_handle)
-    .catch(fail_handle)
-  return request
+  // .then((res: I_reponse<T>) => success_handle(res))
+  // .catch(fail_handle)
+  return wx_request
 }
 
 export const api_get = <T>(
@@ -65,4 +74,17 @@ export const api_post = <T>(
   url = '/', data = {}
 ): Promise<T | null> => {
   return request(`${BASE_URL}/api/${url}?storeId=${STORE_ID}`, data, 'POST')
+}
+
+type T_method = 'GET' | 'POST'
+type T_wx_res<T> = WechatMiniprogram.RequestSuccessCallbackResult<T>
+interface I_reponse<T> {
+  data: {
+    code: number
+    message: string
+    data: T
+  }
+}
+interface I_reponse_err {
+  errMsg: string
 }

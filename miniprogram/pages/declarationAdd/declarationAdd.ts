@@ -101,7 +101,7 @@ Page({
   async a_add(): Promise<void> {
     const data: I0_res | null = await api_channel.add(this.data.params)
     if (data) {
-      util.wx_succes('添加成功', () => util.wx_nav('index'))
+      util.wx_success('添加成功', () => util.wx_nav('index'))
     }
   }
 })
