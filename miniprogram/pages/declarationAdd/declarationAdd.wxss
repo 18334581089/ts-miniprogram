@@ -1,0 +1,84 @@
+.add_main {
+  position: relative;
+}
+
+.add_main>.add_item {
+  margin-bottom: 20rpx;
+  background: #fff;
+  padding: 0 24rpx;
+  font-size: 24rpx;
+  color: #303133;
+  line-height: 60rpx;
+  padding-bottom: 20rpx;
+}
+
+.add_main .add_item>view:not(:first-child) {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+
+.add_main .add_item text {
+  position: relative;
+  width: 130rpx;
+}
+
+.add_main .add_item text::after {
+  position: absolute;
+  content: '*';
+  color: var(--color-mian);
+  left: -12rpx;
+}
+
+.add_main .add_item input {
+  height: 60rpx;
+  padding: 0 10rpx;
+  border-radius: 4rpx;
+}
+
+.add_main .add_item>view>view {
+  flex: 1;
+}
+
+.add_main>.add_box {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+}
+
+.add_title {
+  font-size: 32rpx;
+  color: #252525;
+  line-height: 70rpx;
+  font-weight: 700;
+}
+
+.select_box {
+  position: relative;
+  border: 1px solid var(--color-border);
+}
+
+.select {
+  position: absolute;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  background-color: #Fff;
+  left: -1px;
+  z-index: 99;
+  top: 60rpx;
+}
+
+.select>view {
+  line-height: 50rpx;
+  padding: 0 10rpx;
+}
+
+.select>view:not(:last-child) {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.select>view.true {
+  background-color: var(--color-border);
+}
+.select_box > input {
+  border: none;
+}

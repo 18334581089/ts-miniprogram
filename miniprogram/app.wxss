@@ -1,0 +1,12 @@
+@import "./styles/common.wxss";
+.main {
+  height: 100%;
+}
+radio-group,
+radio-group label {
+  display: flex;
+  align-items: center;
+}
+radio {
+  transform: scale(.7);
+}

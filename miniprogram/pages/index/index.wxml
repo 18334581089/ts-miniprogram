@@ -1,0 +1,65 @@
+<wxs src="./../../utils/format.wxs" module="W" />
+<view class="main index_main">
+  <view class="index_input">
+    <input data-name="params.queryStr" bindinput="handle_input" placeholder-class="phcolor" placeholder="请输入客户名称" />
+    <view bindtap="click_search">
+      <image src="../../assets/search.png"></image>
+      <text>搜索</text>
+    </view>
+  </view>
+  <scroll-view scroll-y bindscrolltolower="handle_more">
+    <view class="index_list">
+      <block wx:if="list.length > 0">
+        <block wx:for="{{list}}" wx:key="index">
+          <view class="list_item">
+            <view>
+              <view class="name">{{item.patientName}}</view>
+              <view class="state {{item.isReach}}">{{W.isReach(item.isReach)}}</view>
+            </view>
+            <view class="content">
+              <view>
+                <text>手机号:</text>
+                <view>{{item.patientPhone}}</view>
+              </view>
+              <view>
+                <text>时间:</text>
+                <view>{{W.formatTime(item.waiterTime)}}</view>
+              </view>
+              <view>
+                <text>科室名称:</text>
+                <view>{{item.deptName || '/'}}</view>
+              </view>
+              <view>
+                <text>最近意向:</text>
+                <view class="dep">{{item.projectName}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="index_btn">
+    <button bindtap="click_dialog">新增报单</button>
+  </view>
+</view>
+<view class="dialog" wx:if="{{dialog}}">
+  <view>
+    <view class="dialog_height">
+      <text>手机号</text>
+      <image bindtap="handle_close" src="../../assets/guanbi.png"></image>
+    </view>
+    <view class="dialog_input">
+      <view>
+        <text>填写手机号</text>
+      </view>
+      <view>
+        <input data-name="phone_vlaue" bindinput="handle_input" placeholder="请输入手机号!" />
+      </view>
+    </view>
+    <view class="dialog_btns">
+      <button bindtap="handle_close">取消</button>
+      <button bindtap="click_add">确认</button>
+    </view>
+  </view>
+</view>

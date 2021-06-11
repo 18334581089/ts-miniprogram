@@ -1,0 +1,17 @@
+<view class="main auth_main">
+  <image mode="aspectFill" src="../../assets/welcome.png"></image>
+  <view class="auth_tip">
+    <view>
+      <view>
+        <image mode="aspectFill" src="../../assets/warning.png"></image>
+      </view>
+      <view>
+        <text>您还未与机构合作，请联系机构开通！</text>
+        <text>若已开通，请点击下面按钮确认！</text>
+      </view>
+    </view>
+  </view> 
+  <view class="auth_box">
+    <button bindtap="onSureClick">确认已经合作</button>
+  </view>
+</view>

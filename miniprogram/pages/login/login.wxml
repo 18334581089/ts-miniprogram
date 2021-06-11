@@ -1,0 +1,18 @@
+
+<view class="main login_main">
+  <image mode="aspectFill" src="../../assets/welcome.png"></image>
+  <view class="login_box" wx:if="{{can_reg}}">
+    <block wx:if="{{!has_user_info}}">
+      <block wx:if="{{canIUseGetUserProfile}}">
+        <button bindtap="onLoginClick">登录</button>
+      </block>
+      <block wx:else>
+        <button open-type="getUserInfo" bindgetuserinfo="handle_login">登录</button>
+      </block>
+    </block>
+    <block wx:else>
+      <button loading="{{get_phone_loading}}" open-type="getPhoneNumber"
+        bindgetphonenumber="onGetPhoneClick">获取手机号</button>
+    </block>
+  </view>
+</view>

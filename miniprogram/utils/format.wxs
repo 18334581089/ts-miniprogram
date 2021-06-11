@@ -1,0 +1,21 @@
+var formatNumber = function (n) {
+  var s = n.toString()
+  return s[1] ? s : '0' + s
+}
+
+var wxs = {
+  formatTime: function (T) {
+    var date = getDate(T*1000)
+    var year = formatNumber(date.getFullYear())
+    var month = formatNumber(date.getMonth() + 1)
+    var day = formatNumber(date.getDate())
+    var hour = formatNumber(date.getHours())
+    var minute = formatNumber(date.getMinutes())
+    var second = formatNumber(date.getSeconds())
+    return (year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second)
+  },
+  isReach: function (isReach) {
+    return isReach === 'NOTARRIVE' ? '未到达' : '到达'
+  }
+}
+module.exports = wxs

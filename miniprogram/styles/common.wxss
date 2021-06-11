@@ -1,0 +1,49 @@
+page {
+  --color-mian: #a00412;
+  --color-border: #DCDFE6;
+  --bgc-page: #f6f6f6;
+  --btn-color: #fff;
+  --btn-size: 32rpx;
+  --btn-height: 78rpx;
+  --size-default: 24rpx;
+  background: var(--bgc-page);
+  font-size: var(--size-default);
+  height: 100%;
+}
+
+image {
+  vertical-align: top;
+}
+
+page button:not([size='mini']),
+page button[type='primary'] {
+  background-color: var(--color-mian);
+  color: var(--btn-color);
+  font-size: var(--btn-size);
+  border-radius: var(--btn-height);
+  height: var(--btn-height);
+  line-height: var(--btn-height);
+  font-weight: 400;
+  display: block;
+  width: 92%;
+  padding: 0;
+}
+
+.phcolor {
+  color: #C0C4CC;
+}
+
+input,
+textarea {
+  border: 1px solid var(--color-border);
+  /* --color-border */
+}
+
+textarea {
+  width: 100%;
+  min-height: 175rpx;
+  height: 100%;
+  box-sizing: border-box;
+  line-height: 30rpx;
+  padding: 10rpx;
+}

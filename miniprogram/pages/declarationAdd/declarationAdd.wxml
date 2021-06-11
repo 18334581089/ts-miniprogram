@@ -1,0 +1,78 @@
+<view class="add_main main">
+  <view class="add_item">
+    <view class="add_title">顾客信息</view>
+    <view>
+      <text>客户手机: </text>
+      <view>
+        <!-- <input placeholder-class="phcolor" value="{{params.patientPhone}}" data-name="patientPhone" bindinput="bindKeyChange" placeholder="输入手机号" /> -->
+        <view>{{params.patientPhone || 18334581089}}</view>
+      </view>
+    </view>
+    <view>
+      <text>姓名: </text>
+      <view>
+        <input placeholder-class="phcolor" value="{{params.patientName}}" data-name="patientName"
+          bindinput="bindKeyChange" placeholder="输入名称" />
+      </view>
+    </view>
+    <view>
+      <text>性别: </text>
+      <radio-group bindchange="radioChange">
+        <label wx:for="{{radios}}" wx:key="index">
+          <radio value="{{item.value}}" checked="{{params.sex == item.value}}" />
+          <view>{{item.label}}</view>
+        </label>
+      </radio-group>
+    </view>
+  </view>
+  <view class="add_item">
+    <view class="add_title">资讯信息</view>
+    <view>
+      <text>科室: </text>
+      <view class="select_box">
+        <view class="select" wx:if="{{show_select_dep}}">
+          <block wx:for="{{departmentlist}}" wx:key="index">
+            <view bindtap="checkboxChange" data-item="{{item}}" class="{{params.deptId == item.depId}}">
+              {{item.depName}}
+            </view>
+          </block>
+        </view>
+        <input placeholder-class="phcolor" bindtap="select_launch" value="{{depname_value}}"
+          placeholder="请选择科室"></input>
+      </view>
+    </view>
+    <view>
+      <text>意向项目: </text>
+      <view class="select_box">
+        <view class="select" wx:if="{{show_select_pro}}">
+          <block wx:for="{{prolist}}" wx:key="index">
+            <view bindtap="checkboxChange2" data-item="{{item}}" data-id="{{item.consultProjectId}}"
+              class="{{params.projectId == item.consultProjectId}}">
+              {{item.consultProjectName}}
+            </view>
+          </block>
+        </view>
+        <input placeholder-class="phcolor" bindtap="select_launch2" disabled="{{prolist.length === 0}}" value="{{project_value}}"
+          placeholder="请选择意向项目"></input>
+      </view>
+    </view>
+    <view>
+      <text>备注: </text>
+      <view>
+        <textarea bindinput="bindKeyChange" data-name="remark" value="{{ params.remark }}" placeholder="多行输入" />
+      </view>
+    </view>
+    <!-- <view>
+    <text>沟通过程: </text>
+    <view>
+      <view>+</view>
+    </view>
+    <view>
+      <textarea placeholder="多行输入" name="textarea" />
+    </view>
+  </view> -->
+  </view>
+  <view class="add_box">
+    <button bindtap="on_add">提交报单</button>
+  </view>
+</view>
