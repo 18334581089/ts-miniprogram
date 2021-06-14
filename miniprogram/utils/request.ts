@@ -1,6 +1,5 @@
 import config from './env'
 import util from '../utils/util'
-import { DefinitionInfoAndBoundSpanReponse } from '../../$node_modules/typescript/lib/protocol'
 
 const { BASE_URL, STORE_ID } = config
 const APP = getApp<IAppOption>()
@@ -35,7 +34,7 @@ export const request = <res_t>(
   datas?: any,
   method: T_method = 'GET',
   headers = {}
-): Promise<res_t | null> => {
+) => {  // : Promise<res_t | null>
   const header = {
     Authorization: 'Bearer ' + APP.globalData.token,
     ...headers
@@ -44,7 +43,7 @@ export const request = <res_t>(
     storeId: STORE_ID,
     ...datas
   }
-  const wx_request = new Promise<res_t | null>((resolve, reject) => {
+  const wx_request = new Promise((resolve, reject) => {
     wx.request({
       url,
       data,
@@ -52,7 +51,7 @@ export const request = <res_t>(
       header,
       // success: (res: T_wx_res<res_t>) => {
       // success (res: PromiseLike<res_t>) {
-      success (res: any) {
+      success(res) {
         resolve(res)
       },
 
@@ -62,6 +61,14 @@ export const request = <res_t>(
   })
   // .then((res: I_reponse<T>) => success_handle(res))
   // .catch(fail_handle)
+  const wx_request2 = new Promise<number | null>(function (resolve, _reject) {
+    wx.request({
+      url,
+      success(res: T_response<number>) {
+        resolve(res.data.data)
+      }
+    })
+  })
   return wx_request
 }
 
@@ -76,6 +83,12 @@ export const api_post = <T>(
   return request(`${BASE_URL}/api/${url}?storeId=${STORE_ID}`, data, 'POST')
 }
 
+interface wx_success <T>{
+  code: number,
+  data: T, 
+  message: string
+}
+type T_response<T> = WechatMiniprogram.RequestSuccessCallbackResult<wx_success<T>>
 type T_method = 'GET' | 'POST'
 type T_wx_res<T> = WechatMiniprogram.RequestSuccessCallbackResult<T>
 interface I_reponse<T> {
