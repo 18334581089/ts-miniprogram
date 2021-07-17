@@ -1,0 +1,8 @@
+"use strict";
+var routeConfigList = [
+    { name: "test-tabbar", path: "pages/tabbar/test-tabbar/index", isTab: true },
+    { name: "testA", path: "test/pages/testA/index" },
+    { name: "testB", path: "test/pages/testB/index" },
+    { name: "product-details", path: "test/pages/product-details/index" }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm91dGVHdWFyZHMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJyb3V0ZUd1YXJkcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0EsSUFBTSxlQUFlLEdBQWtCO0lBQ3JDLEVBQUUsSUFBSSxFQUFFLGFBQWEsRUFBRSxJQUFJLEVBQUUsZ0NBQWdDLEVBQUUsS0FBSyxFQUFFLElBQUksRUFBRTtJQUM1RSxFQUFFLElBQUksRUFBRSxPQUFPLEVBQUUsSUFBSSxFQUFFLHdCQUF3QixFQUFFO0lBQ2pELEVBQUUsSUFBSSxFQUFFLE9BQU8sRUFBRSxJQUFJLEVBQUUsd0JBQXdCLEVBQUU7SUFDakQsRUFBRSxJQUFJLEVBQUUsaUJBQWlCLEVBQUUsSUFBSSxFQUFFLGtDQUFrQyxFQUFFO0NBQ3RFLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyDlrabkuaDot6/nlLHlrojljasxXHJcbmNvbnN0IHJvdXRlQ29uZmlnTGlzdDogUm91dGVDb25maWdbXSA9IFtcclxuICB7IG5hbWU6IFwidGVzdC10YWJiYXJcIiwgcGF0aDogXCJwYWdlcy90YWJiYXIvdGVzdC10YWJiYXIvaW5kZXhcIiwgaXNUYWI6IHRydWUgfSxcclxuICB7IG5hbWU6IFwidGVzdEFcIiwgcGF0aDogXCJ0ZXN0L3BhZ2VzL3Rlc3RBL2luZGV4XCIgfSxcclxuICB7IG5hbWU6IFwidGVzdEJcIiwgcGF0aDogXCJ0ZXN0L3BhZ2VzL3Rlc3RCL2luZGV4XCIgfSxcclxuICB7IG5hbWU6IFwicHJvZHVjdC1kZXRhaWxzXCIsIHBhdGg6IFwidGVzdC9wYWdlcy9wcm9kdWN0LWRldGFpbHMvaW5kZXhcIiB9XHJcbl07XHJcbiJdfQ==
